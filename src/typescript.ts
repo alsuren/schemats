@@ -72,7 +72,7 @@ export function generateTableColumnNames (tableNameRaw: string, tableDefinition:
     let fields = ''
     Object.keys(tableDefinition).forEach((columnNameRaw) => {
         const columnName = options.transformColumnName(columnNameRaw)
-        fields += `${normalizeName(columnName, options)},\n`
+        fields += `"${normalizeName(columnName, options)}",\n`
     })
 
     return `
