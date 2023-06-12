@@ -3,7 +3,7 @@
  * Created by xiamx on 2016-08-10.
  */
 
-import { generateEnumType, generateTableTypes, generateTableInterface } from './typescript'
+import { generateEnumType, generateTableTypes, generateTableInterface, generateTableColumnNames } from './typescript'
 import { getDatabase, Database } from './schema'
 import Options, { OptionValues } from './options'
 import { processString, Options as ITFOptions } from 'typescript-formatter'
@@ -57,6 +57,7 @@ export async function typescriptOfTable (db: Database|string,
     let tableTypes = await db.getTableTypes(table, schema, options)
     interfaces += generateTableTypes(table, tableTypes, options)
     interfaces += generateTableInterface(table, tableTypes, options)
+    interfaces += generateTableColumnNames(table, tableTypes, options)
     return interfaces
 }
 

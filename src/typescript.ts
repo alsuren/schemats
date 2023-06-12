@@ -66,3 +66,18 @@ export function generateTableTypes (tableNameRaw: string, tableDefinition: Table
         }
     `
 }
+
+export function generateTableColumnNames (tableNameRaw: string, tableDefinition: TableDefinition, options: Options) {
+    const tableName = options.transformTypeName(tableNameRaw)
+    let fields = ''
+    Object.keys(tableDefinition).forEach((columnNameRaw) => {
+        const columnName = options.transformColumnName(columnNameRaw)
+        fields += `${normalizeName(columnName, options)}\n`
+    })
+
+    return `
+        export const ${tableName.toUpperCase()}_COLUMNS = [
+        ${fields}
+        ]
+    `
+}
