@@ -78,6 +78,6 @@ export function generateTableColumnNames (tableNameRaw: string, tableDefinition:
     return `
         export const ${tableName.toUpperCase()}_COLUMNS = [
         ${fields}
-        ]
+        ] as const
     `
 }
